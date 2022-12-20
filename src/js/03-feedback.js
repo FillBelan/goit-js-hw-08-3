@@ -1,44 +1,77 @@
-import throttle from 'lodash.throttle';
+// import throttle from 'lodash.throttle';
+// const ref = {
+//     form: document.querySelector('.feedback-form'),
+//     textarea: document.querySelector('.feedback-form textarea'),
+//     input: document.querySelector('.feedback-form input'),
+// };
+
+// ref.form.addEventListener('submit', throttle(submitForm, 500));
+
+// returnText();
+
+// function submitForm(e) { 
+//     e.preventDefault();
+//     const obj = {}; 
+//     const {
+//         elements: { email, message }
+//     } = e.currentTarget;
+//     obj.email = email.value;
+//     obj.message = message.value;
+//     console.log(obj);
+//     e.currentTarget.reset();
+//     localStorage.setItem('feedback-form-state', JSON.stringify(obj));
+// };
+
+// function returnText() {
+//     const savedData = localStorage.getItem('feedback-form-state');
+//     const parsedData = JSON.parse(savedData);
+//     if (parsedData) {
+//         ref.input.value = parsedData.email;
+//         ref.textarea.value = parsedData.message;
+//     }
+// };
+
+
+
+
+
 const ref = {
-    form: document.querySelector('.feedback-form'),
-    textarea: document.querySelector('.feedback-form textarea'),
-    input: document.querySelector('.feedback-form input'),
+    email: document.querySelector('.feedback-form input'),
+    message: document.querySelector('.feedback-form textarea'),
+    form: document.querySelector('.feedback-form')
 };
 
-ref.form.addEventListener('submit', throttle(submitForm, 500));
+ref.email.addEventListener('input', inputForm);
+ref.message.addEventListener('input', messageForm);
+ref.form.addEventListener('submit', clearForm);
 
 returnText();
 
-function submitForm(e) { 
+function inputForm(e) { 
     e.preventDefault();
-    const obj = {}; 
-    const {
-        elements: { email, message }
-    } = e.currentTarget;
-    obj.email = email.value;
-    obj.message = message.value;
-    console.log(obj);
+    const emailData = e.currentTarget.value;
+    localStorage.setItem('feedback-form-email', emailData);
     e.currentTarget.reset();
-    localStorage.setItem('feedback-form-state', JSON.stringify(obj));
+console.log(e.currentTarget.value);
 };
+
+function messageForm(e) { 
+    e.preventDefault();
+    const messageData = e.currentTarget.value;
+    localStorage.setItem('feedback-form-message', messageData);
+    e.currentTarget.reset();
+console.log(e.currentTarget.value);
+};
+
+function clearForm() {
+    localStorage.clear();
+}
 
 function returnText() {
-    const savedData = localStorage.getItem('feedback-form-state');
-    const parsedData = JSON.parse(savedData);
-    if (parsedData) {
-        ref.input.value = parsedData.email;
-        ref.textarea.value = parsedData.message;
+    const savedEmail = localStorage.getItem('feedback-form-email');
+    const savedMessage = localStorage.getItem('feedback-form-message');
+    if (savedEmail && savedMessage) {
+        ref.email.value = savedEmail;
+        ref.message.value = savedMessage;
     }
 };
-
-// const ref = {
-//     email: document.querySelector('input'),
-//     message: document.querySelector('textarea'),
-// };
-
-// ref.email.addEventListener('input', inputForm);
-
-// function inputForm(e) { 
-//     e.preventDefault();
-// console.log(e.currentTarget);
-// };
