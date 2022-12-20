@@ -1,4 +1,4 @@
-// import throttle from 'lodash.throttle';
+import throttle from 'lodash.throttle';
 // const ref = {
 //     form: document.querySelector('.feedback-form'),
 //     textarea: document.querySelector('.feedback-form textarea'),
@@ -41,9 +41,9 @@ const ref = {
     form: document.querySelector('.feedback-form')
 };
 
-ref.email.addEventListener('input', inputForm);
-ref.message.addEventListener('input', messageForm);
-ref.form.addEventListener('submit', clearForm);
+ref.email.addEventListener('input', throttle(inputForm), 500);
+ref.message.addEventListener('input', throttle(messageForm), 500);
+ref.form.addEventListener('submit', throttle(clearForm), 500);
 
 returnText();
 
