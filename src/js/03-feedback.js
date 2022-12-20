@@ -25,9 +25,20 @@ function submitForm(e) {
 function returnText() {
     const savedData = localStorage.getItem('feedback-form-state');
     const parsedData = JSON.parse(savedData);
-    console.log(parsedData);
     if (parsedData) {
         ref.input.value = parsedData.email;
         ref.textarea.value = parsedData.message;
     }
 };
+
+// const ref = {
+//     email: document.querySelector('input'),
+//     message: document.querySelector('textarea'),
+// };
+
+// ref.email.addEventListener('input', inputForm);
+
+// function inputForm(e) { 
+//     e.preventDefault();
+// console.log(e.currentTarget);
+// };
