@@ -41,26 +41,26 @@ const ref = {
     form: document.querySelector('.feedback-form')
 };
 
-ref.email.addEventListener('input', throttle(inputForm), 500);
-ref.message.addEventListener('input', throttle(messageForm), 500);
-ref.form.addEventListener('submit', throttle(clearForm), 500);
+ref.email.addEventListener('input', throttle(inputForm, 500));
+ref.message.addEventListener('input', throttle(messageForm, 500));
+ref.form.addEventListener('submit', throttle(clearForm, 500));
 
 returnText();
 
 function inputForm(e) { 
     e.preventDefault();
-    const emailData = e.currentTarget.value;
+    const emailData = e.target.value;
     localStorage.setItem('feedback-form-email', emailData);
-    e.currentTarget.reset();
-console.log(e.currentTarget.value);
+
+console.log(e.target.value);
 };
 
 function messageForm(e) { 
     e.preventDefault();
-    const messageData = e.currentTarget.value;
+    const messageData = e.target.value;
     localStorage.setItem('feedback-form-message', messageData);
-    e.currentTarget.reset();
-console.log(e.currentTarget.value);
+
+console.log(e.target.value);
 };
 
 function clearForm() {
