@@ -13,11 +13,12 @@ returnText();
 
 
 function onFormInput(e) { 
-    const {
-        elements: { email, message }
-    } = e.currentTarget;
-    obj.email = email.value;
-    obj.message = message.value;
+    // const {
+    //     elements: { email, message }
+    // } = e.currentTarget;
+    // obj.email = email.value;
+    // obj.message = message.value;
+    obj[e.target.name] = e.target.value;
     localStorage.setItem('feedback-form-state', JSON.stringify(obj));
 };
 
